@@ -1,34 +1,34 @@
 import React from 'react';
 import Carousel from 'components/carousel/carousel';
-import CouponImg from 'assets/image/coupon-card.png';
-import OrderImg from 'assets/image/custom-order.png';
-import DeliveryImg from 'assets/image/fast-delivery.png';
-import FemaleCareImg from 'assets/image/female-care.png';
+import FictionImg from 'assets/image/fiction.png';
+import NonFictionImg from 'assets/image/non-fiction.png';
+import AcademicImg from 'assets/image/academic.png';
+import SelfHelpImg from 'assets/image/self-help.png';
 
 const data = [
   {
     id: 1,
-    image: DeliveryImg,
+    image: FictionImg,
     link: '#',
-    title: 'Fast delivery',
+    title: 'Fiction',
   },
   {
     id: 2,
-    image: CouponImg,
+    image: NonFictionImg,
     link: '#',
-    title: 'Coupon savings',
+    title: 'Non-Fiction',
   },
   {
     id: 3,
-    image: OrderImg,
+    image: AcademicImg,
     link: '#',
-    title: 'Custom order',
+    title: 'Academic',
   },
   {
     id: 4,
-    image: FemaleCareImg,
+    image: SelfHelpImg,
     link: '#',
-    title: 'Female care',
+    title: 'Self-Help',
   },
 ];
 

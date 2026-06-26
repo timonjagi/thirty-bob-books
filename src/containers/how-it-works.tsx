@@ -5,28 +5,26 @@ const data = [
   {
     id: 1,
     background: '#feeec8',
-    title: 'Your Order',
-    description: 'Add products to your cart, enter your details and confirm.',
+    title: 'Browse Library',
+    description: 'Explore our collection of ebooks across various genres and categories.',
   },
   {
     id: 2,
     background: '#ceeffe',
-    title: 'Picking your order',
-    description:
-      'Your order is being picked and now will be forwarded for packaging.',
+    title: 'Select Format',
+    description: 'Choose your preferred format: PDF, EPUB, or MOBI for your device.',
   },
   {
     id: 3,
     background: '#d4f8c4',
-    title: 'Packing Your Order',
-    description: 'We are packing your order and will be out for delivery soon.',
+    title: 'Add to Cart',
+    description: 'Add ebooks to your cart and proceed to checkout when ready.',
   },
   {
     id: 4,
     background: '#d8dafe',
-    title: 'Deliver',
-    description:
-      'Your order has been prepared and out for delivery. It will be delivered soon.',
+    title: 'Download',
+    description: 'Receive instant access to download your ebooks after checkout.',
   },
 ];
 

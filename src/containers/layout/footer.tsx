@@ -55,12 +55,12 @@ const social = [
 const Footer = () => (
   <footer className="w-full flex items-center justify-center bg-white shadow-footer px-4 py-30px lg:px-35px lg:justify-between">
     <p className="text-gray-900">
-      Copyright &copy; 2020{' '}
+      Copyright &copy; 2026{' '}
       <a
         className="font-semibold transition-colors duration-200 ease-in-out hover:text-red-700"
-        href="https://redq.io/"
+        href="/"
       >
-        RedQ, Inc.
+        Thirty Bob Books
       </a>{' '}
       All rights reserved
     </p>

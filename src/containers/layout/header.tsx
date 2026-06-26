@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import Link from 'next/link';
-import PhoneIcon from 'assets/icons/phone';
 import CartIcon from 'assets/icons/cart-icon';
 import Logo from 'assets/icons/logo';
 import Search from 'components/search';
@@ -55,20 +54,13 @@ export default function Header() {
 
       <Link href="/">
         <a className="hidden mx-auto lg:mr-10 lg:flex">
-          <span className="sr-only">Medsy</span>
-          <Logo width="110px" id="medsy-header-logo" />
+          <span className="sr-only">Thirty Bob Books</span>
+          <Logo width="110px" id="thirty-bob-books-header-logo" />
         </a>
       </Link>
 
       <div className="w-full ml-10px mr-20px lg:mr-10 lg:ml-auto lg:flex lg:justify-center">
         {isHome && <Search />}
-      </div>
-
-      <div className="hidden items-center text-gray-900 mr-10 flex-shrink-0 lg:flex">
-        <PhoneIcon />
-        <span className="font-semibold text-base text-14px ml-3">
-          +1 855-766-5885
-        </span>
       </div>
 
       <button

@@ -1,4 +1,4 @@
-async function createOrder(data) {
+async function createDownloadRecord(data) {
   if (
     !(
       process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL &&
@@ -17,17 +17,22 @@ async function createOrder(data) {
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL,
     private_key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
   });
-  await doc.loadInfo(); // loads document properties and worksheets
-  const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id]
+  await doc.loadInfo();
+  const sheet = doc.sheetsByIndex[0];
 
-  // append rows
-  await sheet.addRow(JSON.parse(data));
+  const record = {
+    ...data,
+    date: new Date().toISOString(),
+  };
+
+  await sheet.addRow(record);
 }
+
 export default async (req, res) => {
   const { method } = req;
   if (method === 'POST') {
-    await createOrder(req.body);
-    res.status(200).json({ message: `successfully added new order` });
+    await createDownloadRecord(req.body);
+    res.status(200).json({ message: 'Download recorded successfully' });
   } else {
     res.setHeader('Allow', ['POST']);
     res.status(405).json({ message: `Method ${method} Not Allowed` });

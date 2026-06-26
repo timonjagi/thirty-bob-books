@@ -45,7 +45,7 @@ const createMigration = (opts, data) => {
 };
 
 const config = {
-  key: '@session-medsy',
+  key: '@session-thirty-bob-books',
   version: 1,
   migrate: (state) => {
     return { ...state };

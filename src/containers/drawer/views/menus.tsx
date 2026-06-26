@@ -18,25 +18,15 @@ const menus = [
   {
     id: 1,
     pathname: '/',
-    title: 'Medsy Modern',
+    title: 'Browse Ebooks',
   },
   {
     id: 2,
-    pathname: 'https://medsy-minimal.vercel.app/',
-    title: 'Medsy Minimal',
-  },
-  {
-    id: 3,
-    pathname: 'https://medsy-classic.vercel.app/',
-    title: 'Medsy Classic',
-  },
-  {
-    id: 4,
     pathname: '/faq',
     title: 'FAQ',
   },
   {
-    id: 5,
+    id: 3,
     pathname: '/terms',
     title: 'Terms & Conditions',
   },
@@ -104,17 +94,10 @@ export default function DrawerMenu() {
         <div className="w-full h-90px bg-gray-100 flex justify-start items-center relative px-30px flex-shrink-0">
           <Link href="/">
             <a className="flex" onClick={hideMenu}>
-              <span className="sr-only">Medsy</span>
-              <Logo width="100px" id="medsy-menu-logo" />
+              <span className="sr-only">Thirty Bob Books</span>
+              <Logo width="100px" id="thirty-bob-books-menu-logo" />
             </a>
           </Link>
-
-          <div className="flex items-center justify-end ml-auto pl-30px pr-50px text-gray-700 flex-shrink-0 lg:hidden">
-            {/* <PhoneIcon /> */}
-            <span className="font-semibold text-base text-14px ml-3">
-              +1 855-766-5885
-            </span>
-          </div>
 
           <button
             className="w-30px h-30px flex items-center justify-center text-gray-500 absolute right-25px focus:outline-none"

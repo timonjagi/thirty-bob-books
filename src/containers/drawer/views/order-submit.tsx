@@ -33,13 +33,13 @@ export default function OrderSubmit() {
 
         <div className="flex flex-col items-center px-40px md:px-80px mt-15px">
           <h3 className="text-center text-18px font-semibold text-gray-900 mb-40px">
-            Order Confirmation
+            Download Ready
           </h3>
           <p className="text-center text-14px font-semibold text-gray-900 mb-1">
-            Thank you for your order.
+            Thank you for your download!
           </p>
           <p className="text-center text-13px text-gray-700">
-            We've received your order and will contact you very soon.
+            Check your email for download links to your ebooks.
           </p>
         </div>
       </div>

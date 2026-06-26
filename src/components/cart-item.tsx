@@ -21,15 +21,20 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   return (
     <div className={CartItemBase}>
       <div className={CartItemImage}>
-        <img src={item.image} alt={item.name} />
+        <img src={item.cover} alt={item.title} />
       </div>
 
       <div className={CartItemContent}>
-        <span className={CartItemName}>{item.name}</span>
+        <span className={CartItemName}>{item.title}</span>
+        <span className="text-11px text-gray-500">{item.author}</span>
         <span className={CartItemSinglePrice}>
-          Unit Price &nbsp;
-          {CURRENCY}
-          {item.price}
+          {item.price === '0' || item.price === 0 ? 'Free' : (
+            <>
+              Unit Price &nbsp;
+              {CURRENCY}
+              {item.price}
+            </>
+          )}
         </span>
 
         <div className={CartItemTotalWrapper}>
@@ -40,8 +45,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           />
 
           <span className={CartItemTotalPrice}>
-            {CURRENCY}
-            {(item.price * item.quantity).toFixed(2)}
+            {item.price === '0' || item.price === 0 ? 'Free' : (
+              <>
+                {CURRENCY}
+                {(item.price * item.quantity).toFixed(2)}
+              </>
+            )}
           </span>
         </div>
       </div>

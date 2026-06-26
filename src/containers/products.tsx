@@ -11,7 +11,8 @@ const Products = React.forwardRef(
 
     const { searchTerm } = useSearch();
     const searchableItems = useSearchable(items, searchTerm, (item) => [
-      item.name,
+      item.title,
+      item.author,
     ]);
     const showDetails = (item) => {
       dispatch({
@@ -52,7 +53,7 @@ const Products = React.forwardRef(
           <div className="pt-10px md:pt-40px lg:pt-20px pb-40px">
             <NotFound width="100%" />
             <h3 className="text-24px text-gray-900 font-bold mt-35px mb-0 text-center">
-              No product found :(
+              No ebooks found :(
             </h3>
           </div>
         )}

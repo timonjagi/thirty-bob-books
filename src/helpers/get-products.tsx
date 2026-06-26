@@ -19,33 +19,32 @@ export async function getProducts() {
       '\n'
     ),
   });
-  await doc.loadInfo(); // loads document properties and worksheets
-  const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id]
-  // read rows
-  const rows = await sheet.getRows(); // can pass in { limit, offset }
+  await doc.loadInfo();
+  const sheet = doc.sheetsByIndex[0];
+  const rows = await sheet.getRows();
   const products = rows?.map(
     ({
       id,
-      name,
-      image,
+      title,
+      author,
+      cover,
       description,
       price,
-      manufacturer,
-      type,
-      quantity,
-      dosage,
-      substance,
+      format,
+      category,
+      pages,
+      language,
     }) => ({
       id,
-      name,
-      image,
+      title,
+      author,
+      cover,
       description,
       price,
-      manufacturer,
-      type,
-      quantity,
-      dosage,
-      substance,
+      format,
+      category,
+      pages,
+      language,
     })
   );
   return products;
