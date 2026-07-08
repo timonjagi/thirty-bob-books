@@ -1,5 +1,20 @@
 import React from 'react';
-import Collapse, { Panel } from 'rc-collapse';
+import CollapseBase, { Panel as PanelBase } from 'rc-collapse';
+
+const Collapse = CollapseBase as unknown as React.ComponentType<{
+  accordion?: boolean;
+  className?: string;
+  defaultActiveKey?: string;
+  expandIcon?: (props: { isActive?: boolean }) => React.ReactNode;
+  children?: React.ReactNode;
+}>;
+
+const Panel = PanelBase as unknown as React.ComponentType<{
+  header?: React.ReactNode;
+  headerClass?: string;
+  key?: any;
+  children?: React.ReactNode;
+}>;
 
 type AccordionProps = {
   className?: string;
@@ -43,26 +58,27 @@ function expandIcon({ isActive }) {
   );
 }
 
-const Accordion: React.FC<AccordionProps> = ({ className, items = [] }) => (
-  <Collapse
-    accordion={true}
-    className={`accordion ${className}`.trim()}
-    defaultActiveKey="active"
-    expandIcon={expandIcon}
-  >
-    {items.length !== 0 &&
-      items.map((item) => {
-        return (
-          <Panel
-            header={<h3>{item.title}</h3>}
-            headerClass="accordion-title"
-            key={item.id}
-          >
-            <p key={item.id}>{item.details}</p>
-          </Panel>
-        );
-      })}
-  </Collapse>
-);
+const Accordion: React.FC<AccordionProps> = ({ className, items = [] }) => {
+  const panels = items.map((item) => (
+    <Panel
+      header={<h3>{item.title}</h3>}
+      headerClass="accordion-title"
+      key={item.id}
+    >
+      <p key={item.id}>{item.details}</p>
+    </Panel>
+  ));
+
+  return (
+    <Collapse
+      accordion={true}
+      className={`accordion ${className}`.trim()}
+      defaultActiveKey="active"
+      expandIcon={expandIcon}
+    >
+      {panels}
+    </Collapse>
+  );
+};
 
 export default Accordion;

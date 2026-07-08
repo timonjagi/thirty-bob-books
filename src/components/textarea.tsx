@@ -18,7 +18,7 @@ export interface Props {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
-  [key: string]: unknown;
+  [key: string]: any;
 }
 
 export const defaultProps = {

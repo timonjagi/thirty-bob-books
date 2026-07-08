@@ -31,6 +31,7 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.0",
+    "babel-plugin-inline-react-svg": "^2.0.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.0",
     "postcss-flexbugs-fixes": "4.2.1",

@@ -8,25 +8,25 @@ import SelfHelpImg from 'assets/image/self-help.png';
 const data = [
   {
     id: 1,
-    image: FictionImg,
+    image: FictionImg.src,
     link: '#',
     title: 'Fiction',
   },
   {
     id: 2,
-    image: NonFictionImg,
+    image: NonFictionImg.src,
     link: '#',
     title: 'Non-Fiction',
   },
   {
     id: 3,
-    image: AcademicImg,
+    image: AcademicImg.src,
     link: '#',
     title: 'Academic',
   },
   {
     id: 4,
-    image: SelfHelpImg,
+    image: SelfHelpImg.src,
     link: '#',
     title: 'Self-Help',
   },

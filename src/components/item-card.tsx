@@ -32,7 +32,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item, onClick }) => {
 
       <div className={ItemCardContent}>
         <span className={ItemCardPrice}>
-          {item.price === '0' || item.price === 0 ? 'Free' : `${CURRENCY}${item.price}`}
+          {item.price === 0 ? 'Free' : `${CURRENCY}${item.price}`}
         </span>
         <span className="text-13px font-semibold">{item.title}</span>
         <span className="text-11px text-gray-500">{item.author}</span>

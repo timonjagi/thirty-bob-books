@@ -18,7 +18,7 @@ export interface Props {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  [key: string]: unknown;
+  [key: string]: any;
 }
 
 export const defaultProps = {
