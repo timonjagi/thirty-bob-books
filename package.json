@@ -5,6 +5,9 @@
   "description": "Thirty Bob Books — your digital ebook library.",
   "author": "Tim",
   "packageManager": "bun@1.3.5",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
