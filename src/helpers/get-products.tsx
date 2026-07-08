@@ -1,4 +1,4 @@
-async function normalizePrivateKey(key) {
+function normalizePrivateKey(key) {
   if (!key) return key;
   return key
     .replace(/\\n/g, '\n')
