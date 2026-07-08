@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   showDetails: false,
   showCart: false,
   showCheckout: false,
+  showRequest: false,
   menu: false,
   open: false,
   item: [],
@@ -18,6 +19,7 @@ type ActionType =
   | { type: 'TOGGLE_PRODUCT_DETAIL'; payload: any }
   | { type: 'TOGGLE_CART_VIEW'; payload: any }
   | { type: 'TOGGLE_CHECKOUT_VIEW'; payload: any }
+  | { type: 'TOGGLE_REQUEST_VIEW'; payload: any }
   | { type: 'SLIDE_CART'; payload: any }
   | { type: 'OPEN_MENU'; payload: any };
 
@@ -50,6 +52,14 @@ function reducer(state: StateType, action: ActionType) {
         showDetails: false,
         showCart: false,
         showCheckout: action.payload.showCheckout,
+      };
+    case 'TOGGLE_REQUEST_VIEW':
+      return {
+        ...state,
+        showDetails: false,
+        showCart: false,
+        showCheckout: false,
+        showRequest: action.payload.showRequest,
       };
     case 'SLIDE_CART':
       return {

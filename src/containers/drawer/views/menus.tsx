@@ -88,6 +88,12 @@ export default function DrawerMenu() {
     });
   };
 
+  const openRequest = () => {
+    dispatch({ type: 'OPEN_MENU', payload: { menu: false } });
+    dispatch({ type: 'SLIDE_CART', payload: { open: true } });
+    dispatch({ type: 'TOGGLE_REQUEST_VIEW', payload: { showRequest: true } });
+  };
+
   return (
     <>
       <div className="flex flex-col w-full h-full">
@@ -124,6 +130,13 @@ export default function DrawerMenu() {
                 </a>
               </ActiveLink>
             ))}
+
+            <a
+              className="menu-item relative text-gray-900 pl-30px pr-4 mb-8 transition duration-300 ease-in-out last:mb-0 hover:text-gray-900"
+              onClick={openRequest}
+            >
+              Request a Book
+            </a>
           </div>
         </Scrollbar>
 

@@ -3,6 +3,7 @@ import { DrawerContext } from 'contexts/drawer/drawer.provider';
 import ProductDetails from './views/product-details';
 import Cart from './views/cart';
 import Checkout from './views/checkout';
+import RequestBook from './views/request-book';
 import DrawerMenu from './views/menus';
 
 export const CartDrawer = () => {
@@ -27,6 +28,10 @@ export const CartDrawer = () => {
 
     if (state?.showCheckout === true) {
       return <Checkout />;
+    }
+
+    if (state?.showRequest === true) {
+      return <RequestBook />;
     }
 
     return <Cart />;

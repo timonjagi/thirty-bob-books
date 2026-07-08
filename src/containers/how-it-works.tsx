@@ -11,20 +11,23 @@ const data = [
   {
     id: 2,
     background: '#ceeffe',
-    title: 'Select Format',
-    description: 'Choose your preferred format: PDF, EPUB, or MOBI for your device.',
+    title: 'Request a Book',
+    description:
+      "Don't see what you're looking for? Send us a request and we'll try to source it.",
   },
   {
     id: 3,
     background: '#d4f8c4',
-    title: 'Add to Cart',
-    description: 'Add ebooks to your cart and proceed to checkout when ready.',
+    title: 'We Source It',
+    description:
+      'Our team finds and adds the titles you request to the library collection.',
   },
   {
     id: 4,
     background: '#d8dafe',
-    title: 'Download',
-    description: 'Receive instant access to download your ebooks after checkout.',
+    title: 'Get Notified',
+    description:
+      "We'll let you know as soon as your requested book becomes available.",
   },
 ];
 

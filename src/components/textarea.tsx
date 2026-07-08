@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import {
   TextBoxCommonBase,
   TextareaBase,
   TextBoxDisable,
   TextBoxEnable,
-} from './utils/theme';
+} from 'components/utils/theme';
 
 export interface Props {
   value?: string;
@@ -13,9 +13,12 @@ export interface Props {
   readOnly?: boolean;
   disabled?: boolean;
   className?: string;
+  id?: string;
+  name?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  [key: string]: unknown;
 }
 
 export const defaultProps = {
@@ -28,65 +31,85 @@ export const defaultProps = {
 
 type NativeAttrs = Omit<React.TextareaHTMLAttributes<any>, keyof Props>;
 
-export type TextareaPropsType = Props & NativeAttrs;
+export type TextAreaPropsType = Props & NativeAttrs;
 
-const Textarea: React.FC<React.PropsWithChildren<TextareaPropsType>> = ({
-  className,
-  value,
-  initialValue,
-  disabled,
-  readOnly,
-  placeholder,
-  onChange,
-  onFocus,
-  onBlur,
-  ...props
-}) => {
-  const [initValue, setInitValue] = useState<string>(initialValue);
+const TextArea = React.forwardRef<
+  HTMLTextAreaElement,
+  React.PropsWithChildren<TextAreaPropsType>
+>(
+  (
+    {
+      className,
+      id,
+      value,
+      name,
+      initialValue,
+      disabled,
+      readOnly,
+      placeholder,
+      onChange,
+      onFocus,
+      onBlur,
+      ...props
+    },
+    ref: React.Ref<HTMLTextAreaElement | null>
+  ) => {
+    const inputRef = useRef<HTMLTextAreaElement>(null);
+    useImperativeHandle(ref, () => inputRef.current);
 
-  const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (disabled || readOnly) return;
-    setInitValue(event.target.value);
-    onChange && onChange(event);
-  };
+    const [initValue, setInitValue] = useState<string>(initialValue);
 
-  const focusHandler = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    onFocus && onFocus(e);
-  };
-  const blurHandler = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    onBlur && onBlur(e);
-  };
+    const changeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      if (disabled || readOnly) return;
+      setInitValue(event.target.value);
+      onChange && onChange(event);
+    };
 
-  useEffect(() => {
-    if (value === undefined) return;
-    setInitValue(value);
-  }, [value]);
+    const focusHandler = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      onFocus && onFocus(e);
+    };
+    const blurHandler = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      onBlur && onBlur(e);
+    };
 
-  const classNames =
-    TextBoxCommonBase +
-    ' ' +
-    TextareaBase +
-    ' ' +
-    (disabled === true ? TextBoxDisable : TextBoxEnable) +
-    ' ' +
-    className;
+    useEffect(() => {
+      if (value === undefined) return;
+      setInitValue(value);
+    }, [value]);
 
-  return (
-    <textarea
-      placeholder={placeholder}
-      className={classNames}
-      value={initValue}
-      disabled={disabled}
-      readOnly={readOnly}
-      onChange={changeHandler}
-      onFocus={focusHandler}
-      onBlur={blurHandler}
-      autoComplete="off"
-      {...props}
-    />
-  );
-};
+    const classNames =
+      TextareaBase +
+      ' ' +
+      TextBoxCommonBase +
+      ' ' +
+      (disabled === true ? TextBoxDisable : TextBoxEnable) +
+      ' ' +
+      className;
 
-Textarea.defaultProps = defaultProps;
+    return (
+      <React.Fragment>
+        <label htmlFor={id} className="sr-only">
+          {name}
+        </label>
+        <textarea
+          ref={inputRef}
+          placeholder={placeholder}
+          className={classNames}
+          id={name}
+          value={initValue}
+          disabled={disabled}
+          readOnly={readOnly}
+          onChange={changeHandler}
+          onFocus={focusHandler}
+          onBlur={blurHandler}
+          name={name}
+          {...props}
+        />
+      </React.Fragment>
+    );
+  }
+);
 
-export default Textarea;
+TextArea.defaultProps = defaultProps;
+
+export default TextArea;
