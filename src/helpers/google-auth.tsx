@@ -1,0 +1,55 @@
+import { importPKCS8, SignJWT } from 'jose'
+
+function reconstructPemKey(rawKey: string): string {
+  if (rawKey.includes('\n')) return rawKey
+  const body = rawKey
+    .replace('-----BEGIN PRIVATE KEY-----', '')
+    .replace('-----END PRIVATE KEY-----', '')
+    .replace(/\\n/g, '')
+    .trim()
+  return `-----BEGIN PRIVATE KEY-----\n${body}\n-----END PRIVATE KEY-----\n`
+}
+
+export async function getGoogleAccessToken(): Promise<{
+  access_token: string
+  token_type: string
+  expiry_date: number
+}> {
+  const email = process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL
+  const rawKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+
+  if (!email || !rawKey) {
+    throw new Error(
+      'GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL and GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY must be set.'
+    )
+  }
+
+  const pemKey = reconstructPemKey(rawKey)
+  const privateKey = await importPKCS8(pemKey, 'RS256')
+
+  const jwt = await new SignJWT({ scope: 'https://www.googleapis.com/auth/spreadsheets' })
+    .setProtectedHeader({ alg: 'RS256', typ: 'JWT' })
+    .setIssuedAt()
+    .setExpirationTime('1h')
+    .setIssuer(email)
+    .setAudience('https://oauth2.googleapis.com/token')
+    .sign(privateKey)
+
+  const response = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`,
+  })
+
+  if (!response.ok) {
+    const err = await response.text()
+    throw new Error(`Google token exchange failed: ${err}`)
+  }
+
+  const tokens = await response.json()
+  return {
+    access_token: tokens.access_token,
+    token_type: 'Bearer',
+    expiry_date: Date.now() + tokens.expires_in * 1000,
+  }
+}
