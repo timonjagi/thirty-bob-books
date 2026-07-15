@@ -13,6 +13,13 @@ export async function getProducts() {
   const { GoogleSpreadsheet } = require('google-spreadsheet');
   const { JWT } = require('google-auth-library');
   let privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+
+  console.log('KEY RAW length:', privateKey?.length);
+  console.log('KEY RAW first50:', JSON.stringify(privateKey?.substring(0, 50)));
+  console.log('KEY RAW last30:', JSON.stringify(privateKey?.substring(privateKey.length - 30)));
+  console.log('KEY has newline:', privateKey?.includes('\n'));
+  console.log('KEY has escaped-n:', privateKey?.includes('\\n'));
+
   if (!privateKey.includes('\n')) {
     const body = privateKey
       .replace('-----BEGIN PRIVATE KEY-----', '')
