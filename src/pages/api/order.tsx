@@ -12,37 +12,12 @@ async function createOrder(data) {
   }
 
   const { GoogleSpreadsheet } = require('google-spreadsheet');
-  const { JWT } = require('google-auth-library');
-  let privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
-  
-  console.log('KEY DEBUG:', {
-    type: typeof privateKey,
-    length: privateKey?.length,
-    hasNewlines: privateKey?.includes('\n'),
-    hasBackslashN: privateKey?.includes('\\n'),
-    startsWithHeader: privateKey?.startsWith('-----BEGIN'),
-    first50: privateKey?.substring(0, 50),
-    last20: privateKey?.substring(privateKey.length - 20),
-  });
-  
-  if (!privateKey.includes('\n')) {
-    const body = privateKey
-      .replace('-----BEGIN PRIVATE KEY-----', '')
-      .replace('-----END PRIVATE KEY-----', '')
-      .replace(/\\n/g, '')
-      .trim();
-    privateKey = `-----BEGIN PRIVATE KEY-----\n${body}\n-----END PRIVATE KEY-----\n`;
-  }
-  const serviceAccountAuth = new JWT({
-    email: process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL,
-    key: privateKey,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  });
-  const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID_ORDER, serviceAccountAuth);
-  await doc.loadInfo(); // loads document properties and worksheets
-  const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id]
+  const { getGoogleAccessToken } = require('../../helpers/google-auth');
+  const auth = await getGoogleAccessToken();
+  const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID_ORDER, auth);
+  await doc.loadInfo();
+  const sheet = doc.sheetsByIndex[0];
 
-  // append rows
   await sheet.addRow(JSON.parse(data));
 }
 export default async (req, res) => {
