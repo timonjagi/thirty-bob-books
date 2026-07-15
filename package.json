@@ -11,8 +11,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "google-auth-library": "^10.1.0",
     "google-spreadsheet": "^4.0.0",
-    "jose": "^6.2.3",
     "localforage": "^1.9.0",
     "next": "^14.2.0",
     "overlayscrollbars": "^1.13.0",
