@@ -1,4 +1,10 @@
 export async function getProducts() {
+  console.log('ALL GOOGLE ENV:', Object.keys(process.env).filter(k => k.startsWith('GOOGLE')));
+  console.log('ENV VALUES:', {
+    email: process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL,
+    keyLength: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.length,
+    product: process.env.GOOGLE_SPREADSHEET_ID_PRODUCT,
+  });
   if (
     !(
       process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL &&
@@ -10,15 +16,9 @@ export async function getProducts() {
       'GOOGLE credentials must be set as env vars `GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL` ,`GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` and `GOOGLE_SPREADSHEET_ID_PRODUCT`.'
     );
   }
-  console.log('ENV CHECK:', {
-    email: !!process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL,
-    key: !!process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
-    product: !!process.env.GOOGLE_SPREADSHEET_ID_PRODUCT,
-  });
   const { GoogleSpreadsheet } = require('google-spreadsheet');
   const { JWT } = require('google-auth-library');
   let privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
-
   if (!privateKey.includes('\n')) {
     const body = privateKey
       .replace('-----BEGIN PRIVATE KEY-----', '')
