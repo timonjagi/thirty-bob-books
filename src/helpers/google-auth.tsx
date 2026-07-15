@@ -1,5 +1,3 @@
-import { importPKCS8, SignJWT } from 'jose'
-
 function reconstructPemKey(rawKey: string): string {
   if (rawKey.includes('\n')) return rawKey
   const body = rawKey
@@ -10,11 +8,7 @@ function reconstructPemKey(rawKey: string): string {
   return `-----BEGIN PRIVATE KEY-----\n${body}\n-----END PRIVATE KEY-----\n`
 }
 
-export async function getGoogleAccessToken(): Promise<{
-  access_token: string
-  token_type: string
-  expiry_date: number
-}> {
+export async function getGoogleAccessToken() {
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL
   const rawKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
 
@@ -23,6 +17,8 @@ export async function getGoogleAccessToken(): Promise<{
       'GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL and GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY must be set.'
     )
   }
+
+  const { importPKCS8, SignJWT } = await import('jose')
 
   const pemKey = reconstructPemKey(rawKey)
   const privateKey = await importPKCS8(pemKey, 'RS256')
