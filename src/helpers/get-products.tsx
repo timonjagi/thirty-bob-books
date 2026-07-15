@@ -10,15 +10,14 @@ export async function getProducts() {
       'GOOGLE credentials must be set as env vars `GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL` ,`GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` and `GOOGLE_SPREADSHEET_ID_PRODUCT`.'
     );
   }
+  console.log('ENV CHECK:', {
+    email: !!process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL,
+    key: !!process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
+    product: !!process.env.GOOGLE_SPREADSHEET_ID_PRODUCT,
+  });
   const { GoogleSpreadsheet } = require('google-spreadsheet');
   const { JWT } = require('google-auth-library');
   let privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
-
-  console.log('KEY RAW length:', privateKey?.length);
-  console.log('KEY RAW first50:', JSON.stringify(privateKey?.substring(0, 50)));
-  console.log('KEY RAW last30:', JSON.stringify(privateKey?.substring(privateKey.length - 30)));
-  console.log('KEY has newline:', privateKey?.includes('\n'));
-  console.log('KEY has escaped-n:', privateKey?.includes('\\n'));
 
   if (!privateKey.includes('\n')) {
     const body = privateKey
