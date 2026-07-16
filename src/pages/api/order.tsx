@@ -31,7 +31,7 @@ async function createOrder(data) {
   await doc.loadInfo();
   const sheet = doc.sheetsByIndex[0];
 
-  await sheet.addRow(JSON.parse(data));
+  await sheet.addRow(data);
 }
 export default async (req, res) => {
   const { method } = req;
