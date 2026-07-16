@@ -1,10 +1,14 @@
 export async function getProducts() {
-  const missing = [];
-  if (!process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL) missing.push('GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL');
-  if (!process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY) missing.push('GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY');
-  if (!process.env.GOOGLE_SPREADSHEET_ID_PRODUCT) missing.push('GOOGLE_SPREADSHEET_ID_PRODUCT');
-  if (missing.length > 0) {
-    throw new Error(`Missing env vars: ${missing.join(', ')}`);
+  if (
+    !(
+      process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL &&
+      process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY &&
+      process.env.GOOGLE_SPREADSHEET_ID_PRODUCT
+    )
+  ) {
+    throw new Error(
+      'GOOGLE credentials must be set as env vars `GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL` ,`GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` and `GOOGLE_SPREADSHEET_ID_PRODUCT`.'
+    );
   }
   const { GoogleSpreadsheet } = require('google-spreadsheet');
   const { JWT } = require('google-auth-library');
