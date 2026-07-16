@@ -32,7 +32,7 @@ export async function getProducts() {
   const rows = await sheet.getRows();
   const products = rows?.map((row) => ({
     id: row.get('id'),
-    name: row.get('name'),
+    name: row.get('title') || row.get('name'),
     author: row.get('author'),
     image: row.get('cover'),
     description: row.get('description'),
