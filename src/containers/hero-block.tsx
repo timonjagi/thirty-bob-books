@@ -54,12 +54,12 @@ export default function HeroBlock() {
       />
 
       <div className="flex flex-col relative z-10 justify-center items-center w-full max-w-720px">
-        <h1 className="font-normal font-30px text-gray-900 text-center mb-4">
+        <h1 className="font-normal font-30px text-white text-center mb-4 drop-shadow-lg">
           <span className="font-bold">Thirty Bob Library</span>
           <span className="font-bold block">Your Digital Ebook Library</span>
         </h1>
 
-        <p className="font-17px text-gray-700 lg:mb-60px text-center leading-loose">
+        <p className="font-17px text-gray-200 lg:mb-60px text-center leading-loose drop-shadow-md">
           Browse our collection or request any title — we'll source it for you.
         </p>
         <button
