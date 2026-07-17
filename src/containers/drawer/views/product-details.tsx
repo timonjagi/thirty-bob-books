@@ -2,11 +2,13 @@ import React, { useState, useContext } from 'react';
 import { Scrollbar } from 'components/scrollbar';
 import { CURRENCY } from 'helpers/constants';
 import { DrawerContext } from 'contexts/drawer/drawer.provider';
+import { useCart } from 'contexts/cart/cart.provider';
 import ArrowLeft from 'assets/icons/arrow-left';
 
 export default function ProductDetails() {
   const [visibility, setVisibility] = useState(true);
   const { state, dispatch } = useContext(DrawerContext);
+  const { addItem } = useCart();
 
   const toggleVisibility = () => {
     setVisibility(!visibility);
@@ -110,6 +112,13 @@ export default function ProductDetails() {
               </div>
             )}
           </div>
+
+          <button
+            onClick={() => addItem(state.item)}
+            className="w-full bg-gray-900 text-white text-14px font-semibold px-30px py-20px mt-20px rounded hover:bg-gray-800 transition-colors"
+          >
+            Add to Cart
+          </button>
         </div>
       </Scrollbar>
     </div>
