@@ -16,7 +16,7 @@ const Logo = (props) => {
         fill="#209F85"
         letterSpacing="0.3"
       >
-        Tim&apos;s Apothecary
+        Thirty Bob Library
       </text>
     </svg>
   );

@@ -4,7 +4,6 @@ import { Scrollbar } from 'components/scrollbar';
 import ActiveLink from 'components/active-link';
 import { DrawerContext } from 'contexts/drawer/drawer.provider';
 import CloseIcon from 'assets/icons/close';
-import Logo from 'assets/icons/logo';
 import {
   Facebook,
   Twitter,
@@ -93,9 +92,8 @@ export default function DrawerMenu() {
       <div className="flex flex-col w-full h-full">
         <div className="w-full h-90px bg-gray-100 flex justify-start items-center relative px-30px flex-shrink-0">
           <Link href="/">
-            <a className="flex" onClick={hideMenu}>
-              <span className="sr-only">Thirty Bob Library</span>
-              <Logo width="160px" id="thirty-bob-library-menu-logo" />
+            <a className="flex items-center" onClick={hideMenu}>
+              <span className="font-bold text-18px text-gray-900">Thirty Bob Library</span>
             </a>
           </Link>
 

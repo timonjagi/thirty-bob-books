@@ -36,7 +36,7 @@ export const siteTermsAndServices = {
       id: '6',
       title: 'Owner and Data Controller',
       description:
-        '<p>Tim\'s Apothecary<br>[Your street address]<br>[Your city, state, postal code]<br>[Your country]<br><br>Email: [your-email@example.com]</p>',
+        '<p>Thirty Bob Library<br>[Your street address]<br>[Your city, state, postal code]<br>[Your country]<br><br>Email: [your-email@example.com]</p>',
     },
   ],
 };
