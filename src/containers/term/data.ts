@@ -6,7 +6,7 @@ export const siteTermsAndServices = {
       id: '1',
       title: 'Purpose',
       description:
-        "<p>Tim's Apothecary is committed to protecting your privacy. Our Privacy Policy below sets out how your personal information is collected, used and protected. The applicable local privacy laws also apply to us.</p><br/><p>This Privacy Policy describes our policies and procedures on the collection, holding, use and disclosure of your personal information and should be read together with our&nbsp;Terms and Conditions. By providing your personal information you consent to our collection, use and disclosure of that information in accordance with this Privacy Policy.</p>",
+        "<p>Thirty Bob Library is committed to protecting your privacy. Our Privacy Policy below sets out how your personal information is collected, used and protected. The applicable local privacy laws also apply to us.</p><br/><p>This Privacy Policy describes our policies and procedures on the collection, holding, use and disclosure of your personal information and should be read together with our&nbsp;Terms and Conditions. By providing your personal information you consent to our collection, use and disclosure of that information in accordance with this Privacy Policy.</p>",
     },
     {
       id: '2',
