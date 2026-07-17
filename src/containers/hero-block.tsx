@@ -64,7 +64,7 @@ export default function HeroBlock() {
         </p>
         <button
           onClick={showRequestBook}
-          className="bg-gray-900 text-white text-16px font-semibold px-40px py-16px rounded-lg hover:bg-gray-800 transition-colors"
+          className="bg-gray-900 text-white text-16px font-semibold px-40px py-20px rounded-lg hover:bg-gray-800 transition-colors"
         >
           Request a Book
         </button>

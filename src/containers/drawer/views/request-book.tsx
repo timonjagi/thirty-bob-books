@@ -79,7 +79,7 @@ export default function RequestBook() {
           </p>
           <button
             onClick={hideRequest}
-            className="bg-gray-900 text-white text-14px font-semibold px-30px py-14px rounded hover:bg-gray-800 transition-colors"
+            className="bg-gray-900 text-white text-14px font-semibold px-30px py-20px rounded hover:bg-gray-800 transition-colors"
           >
             Done
           </button>
@@ -151,7 +151,7 @@ export default function RequestBook() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gray-900 text-white text-14px font-semibold px-30px py-14px mt-20px rounded hover:bg-gray-800 transition-colors"
+            className="w-full bg-gray-900 text-white text-14px font-semibold px-30px py-20px mt-20px rounded hover:bg-gray-800 transition-colors"
           >
             {loading ? 'Submitting...' : 'Submit Request'}
           </button>
